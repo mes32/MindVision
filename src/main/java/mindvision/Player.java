@@ -8,6 +8,7 @@ package mindvision;
 
 public abstract class Player {
 
-    Deck deck = new Deck();
+    private HealthPoints hp = new HealthPoints(30, 30);
+    private Deck deck = new Deck();
     
 }
