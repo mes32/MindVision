@@ -6,10 +6,10 @@
 
 package mindvision;
 
-import java.io.*;
-
 public class Main {
     public static void main(String[] args) {
-        System.out.println("in Main.java");
+        Game game = new Game();
+        CommandLineInterface gameInterface = new CommandLineInterface(game);
+        gameInterface.start();
     }
 }
