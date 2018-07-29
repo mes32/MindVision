@@ -7,8 +7,15 @@
 package mindvision;
 
 public class MinionCard implements Card {
+    private String name;
+    private int cost;
+    private int attack;
+    private int health;
 
-    MinionCard() {
-
+    MinionCard(String name, int cost, int attack, int health) {
+        this.name = name;
+        this.cost = cost;
+        this.attack = attack;
+        this.health = health;
     }
 }

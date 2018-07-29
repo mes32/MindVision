@@ -10,9 +10,9 @@ import mindvision.utilities.*;
 
 public class MinionBoard {
 
-    private MVStack<SummonedMinion> minions = new MVStack<SummonedMinion>();
+    private MVStack<SummonedMinion> minions;
 
-    MinionBoard() {
-
+    MinionBoard(int capacity) {
+        minions = new MVStack<SummonedMinion>(capacity);
     }
 }

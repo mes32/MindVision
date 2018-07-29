@@ -15,4 +15,12 @@ public class Game {
         player1 = new ComputerPlayer();
         player2 = new HumanPlayer();
     }
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
 }

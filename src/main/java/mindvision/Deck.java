@@ -15,4 +15,20 @@ public class Deck {
     Deck() {
 
     }
+
+    public void insert(Card card) {
+        cards.push(card);
+    }
+
+    public Card draw() {
+        return cards.pop();
+    }
+
+    public void shuffle() {
+        cards.shuffle();
+    }
+
+    public int size() {
+        return cards.size();
+    }
 }

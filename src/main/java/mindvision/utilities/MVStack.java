@@ -14,18 +14,18 @@ public class MVStack<T> {
     private boolean setCapacity = false;
     private int capacity = -1;
 
-    public void MVStack() {
+    public MVStack() {
         stack = new ArrayList<T>();
     }
 
-    public void MVStack(int capacity) {
+    public MVStack(int capacity) {
         stack = new ArrayList<T>(capacity);
         setCapacity = true;
         this.capacity = capacity;
     }
 
     public void push(T item) {
-        if (setCapacity && stack.size() < capacity) {
+        if (!setCapacity || stack.size() < capacity) {
             stack.add(item);
         }
     }
@@ -44,5 +44,13 @@ public class MVStack<T> {
 
     public boolean remove(T item) {
         return stack.remove(item);
+    }
+
+    public void shuffle() {
+        Collections.shuffle(stack);
+    }
+
+    public int size() {
+        return stack.size();
     }
 }

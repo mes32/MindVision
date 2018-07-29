@@ -10,9 +10,13 @@ import mindvision.utilities.*;
 
 public class Hand {
 
-    private MVStack<Card> cards = new MVStack<Card>();
+    private MVStack<Card> cards;
 
-    Hand() {
+    Hand(int capacity) {
+        cards = new MVStack<Card>(capacity);
+    }
 
+    public int size() {
+        return cards.size();
     }
 }

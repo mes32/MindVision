@@ -16,6 +16,14 @@ public class HealthPoints {
         this.totalPoints = totalPoints;
     }
 
+    public int getCurrent() {
+        return currentPoints;
+    }
+
+    public int getTotal() {
+        return totalPoints;
+    }
+
     public void damage(int d) {
         currentPoints -= d;
     }
