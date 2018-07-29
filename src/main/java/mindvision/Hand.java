@@ -16,6 +16,10 @@ public class Hand {
         cards = new MVStack<Card>(capacity);
     }
 
+    public void insert(Card card) {
+        cards.push(card);
+    }
+
     public int size() {
         return cards.size();
     }

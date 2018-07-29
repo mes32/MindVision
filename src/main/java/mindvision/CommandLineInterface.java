@@ -26,6 +26,8 @@ public class CommandLineInterface {
 
     private void printAll() {
         printPlayers();
+        printBoards();
+        printHand();
     }
 
     private void printPlayers() {
@@ -43,5 +45,23 @@ public class CommandLineInterface {
         System.out.printf("    HP: %d/%d  deck: %d  hand: %d%n", currentHP1, totalHP1, deck1, hand1);
         System.out.println("P2");
         System.out.printf("    HP: %d/%d  deck: %d  hand: %d%n", currentHP2, totalHP2, deck2, hand2);
+        System.out.println();
+    }
+
+    private void printBoards() {
+        System.out.println();
+    }
+
+    private void printHand() {
+        int len = p2.getHand().size();
+
+        if (len > 0) {
+            System.out.print("    ");
+            for (int i=0; i < len; i++) {
+                System.out.print("|" + i);
+            }
+            System.out.println("|");
+        }
+        System.out.println();
     }
 }
