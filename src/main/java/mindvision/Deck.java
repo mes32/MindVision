@@ -1,7 +1,7 @@
 /*
     Deck.java
 
-    Represents a player's deck of Cards
+    Represents a player's deck of Cards that are queued to be drawn into thier Hand
  */
 
 package mindvision;

@@ -10,5 +10,5 @@ public abstract class Player {
 
     private HealthPoints hp = new HealthPoints(30, 30);
     private Deck deck = new Deck();
-    
+    private Hand hand = new Hand();
 }
