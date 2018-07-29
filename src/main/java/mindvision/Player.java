@@ -44,7 +44,7 @@ public abstract class Player {
         }
         deck.shuffle();
 
-        for (int i = 0; i < 3; i++) {
+        for (int i=0; i < 3; i++) {
             Card card = deck.draw();
             hand.insert(card);
         }

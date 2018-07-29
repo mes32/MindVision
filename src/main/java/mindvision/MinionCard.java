@@ -18,4 +18,20 @@ public class MinionCard implements Card {
         this.attack = attack;
         this.health = health;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public int getHealth() {
+        return health;
+    }
 }

@@ -15,4 +15,12 @@ public class MinionBoard {
     MinionBoard(int capacity) {
         minions = new MVStack<SummonedMinion>(capacity);
     }
+
+    public void playAtEnd(SummonedMinion minion) {
+        minions.push(minion);
+    }
+
+    public int size() {
+        return minions.size();
+    }
 }

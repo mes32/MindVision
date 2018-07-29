@@ -9,7 +9,11 @@ package mindvision;
 public class HealthPoints {
 
     private int currentPoints;
-    private int totalPoints; 
+    private int totalPoints;
+
+    HealthPoints(int points) {
+        this(points, points);
+    }
 
     HealthPoints(int currentPoints, int totalPoints) {
         this.currentPoints = currentPoints;
