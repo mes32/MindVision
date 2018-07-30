@@ -17,6 +17,8 @@ public class CommandLineInterface {
     private Player p1;
     private Player p2;
 
+    private Scanner scan = new Scanner(System.in);
+
     CommandLineInterface(Game game) {
         this.game = game;
         p1 = game.getPlayer1();
@@ -25,6 +27,24 @@ public class CommandLineInterface {
 
     public void start() {
         printAll();
+        System.out.print(" > ");
+        String line = scan.nextLine();
+
+        while (!line.equals(".")) {
+            if (line.length() == 1) {
+                if (isNumeric(line)) {
+                    int index = getCardIndex(line);
+                    printCard(index);
+                } else {
+                    int index = getMinionIndex(line);
+                    printMinion(index);
+                }
+            }
+
+            printAll();
+            System.out.print(" > ");
+            line = scan.nextLine();
+        }
     }
 
     private void printAll() {
@@ -86,7 +106,42 @@ public class CommandLineInterface {
         System.out.println();
     }
 
-    private void printSpaces(int n) {
+    private void printCard(int index) {
+        Hand hand = p2.getHand();
+        try {
+            Card card = hand.get(index);
+            card.print();
+        } catch (IndexOutOfBoundsException e) {
+
+        }
+    }
+
+    private void printMinion(int index) {
+        System.out.println("Printing minion at index = " + index);
+    }
+
+    private int getCardIndex(String line) {
+        try {  
+            return Integer.parseInt(line);  
+        } catch(NumberFormatException e) {  
+            return -1;  
+        }  
+    }
+
+    private int getMinionIndex(String line) {
+        return 0;
+    }
+
+    private static boolean isNumeric(String line) {  
+        try {  
+            int number = Integer.parseInt(line);  
+        } catch(NumberFormatException e) {  
+            return false;  
+        }  
+        return true;
+    }
+
+    private static void printSpaces(int n) {
         char[] spaces = new char[n];
         Arrays.fill(spaces, ' ');
         System.out.print(new String(spaces));

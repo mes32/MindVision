@@ -6,9 +6,9 @@
 
 package mindvision;
 
-public class MinionCard implements Card {
-    private String name;
-    private int cost;
+public class MinionCard extends Card {
+    // private String name;
+    // private int cost;
     private int attack;
     private int health;
 
@@ -19,19 +19,19 @@ public class MinionCard implements Card {
         this.health = health;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getCost() {
-        return cost;
-    }
-
     public int getAttack() {
         return attack;
     }
 
     public int getHealth() {
         return health;
+    }
+
+    public void print() {
+        System.out.println(ANSI_RED + " - " + name + " - " + ANSI_RESET);
+        System.out.println("     cost " + ANSI_BLUE + U_DIAMOND + ANSI_RESET + " " + cost);
+        System.out.println("   attack " + ANSI_YELLOW + U_DAGGER + ANSI_RESET + " " + attack);
+        System.out.println("   health " + ANSI_RED + U_HEART + ANSI_RESET + " " + health);
+        System.out.println();
     }
 }

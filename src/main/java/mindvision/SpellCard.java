@@ -6,7 +6,7 @@
 
 package mindvision;
 
-public class SpellCard implements Card {
+public class SpellCard extends Card {
 
     SpellCard() {
 

@@ -20,6 +20,10 @@ public class Hand {
         cards.push(card);
     }
 
+    public Card get(int index) throws IndexOutOfBoundsException {
+        return cards.get(index);
+    }
+
     public int size() {
         return cards.size();
     }

@@ -6,14 +6,16 @@
 
 package mindvision;
 
+// TODO: Temporary while testing board centering
+import java.util.Random;
+
 public abstract class Player {
 
     private static final int STARTING_HP = 30;
-    private static final int MAXIMUM_HP = 30;
     private static final int MAXIMUM_HAND_SIZE = 10;
     private static final int MAXIMUM_BOARD_SIZE = 7;
 
-    private HealthPoints hp = new HealthPoints(STARTING_HP, MAXIMUM_HP);
+    private HealthPoints hp = new HealthPoints(STARTING_HP);
     private Deck deck = new Deck();
     private Hand hand = new Hand(MAXIMUM_HAND_SIZE);
     private MinionBoard board = new MinionBoard(MAXIMUM_BOARD_SIZE);
@@ -47,6 +49,15 @@ public abstract class Player {
         for (int i=0; i < 3; i++) {
             Card card = deck.draw();
             hand.insert(card);
+        }
+
+        // TODO: Temporary while testing board centering
+        Random rand = new Random();
+        int  n = rand.nextInt(8);
+        for (int i=0; i < n; i++) {
+            MinionCard card = new MinionCard("Blank One", 1, 1, 1);
+            SummonedMinion minion = new SummonedMinion(card);
+            board.playAtEnd(minion);
         }
     }
 
