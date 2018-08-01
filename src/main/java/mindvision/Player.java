@@ -11,13 +11,12 @@ import java.util.Random;
 
 public abstract class Player {
 
-    private static final int STARTING_HP = 30;
     private static final int MAXIMUM_HAND_SIZE = 10;
     private static final int MAXIMUM_BOARD_SIZE = 7;
 
-    private HealthPoints hp = new HealthPoints(STARTING_HP);
     private Deck deck = new Deck();
     private Hand hand = new Hand(MAXIMUM_HAND_SIZE);
+    private Hero hero = new Hero();
     private MinionBoard board = new MinionBoard(MAXIMUM_BOARD_SIZE);
 
     public Player() {
@@ -62,7 +61,7 @@ public abstract class Player {
     }
 
     public HealthPoints getHP() {
-        return hp;
+        return hero.getHP();
     }
 
     public Deck getDeck() {

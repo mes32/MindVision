@@ -33,11 +33,9 @@ public class CommandLineInterface {
         while (!line.equals(".")) {
             if (line.length() == 1) {
                 if (isNumeric(line)) {
-                    int index = getCardIndex(line);
-                    printCard(index);
+                    evalPrintCard(line);
                 } else {
-                    int index = getMinionIndex(line);
-                    printMinion(index);
+                    evalPrintItem(line);
                 }
             }
 
@@ -106,31 +104,32 @@ public class CommandLineInterface {
         System.out.println();
     }
 
-    private void printCard(int index) {
-        Hand hand = p2.getHand();
+    private void evalPrintCard(String line) {
         try {
-            Card card = hand.get(index);
-            card.print();
-        } catch (IndexOutOfBoundsException e) {
-
+            if (line.length() == 1) {
+                int index = Integer.parseInt(line);
+                Hand hand = p2.getHand();
+                Card card = hand.get(index);
+                card.print();
+            }
+        } catch(NumberFormatException | IndexOutOfBoundsException e) {
+            // Do nothing
         }
     }
 
-    private void printMinion(int index) {
-        System.out.println("Printing minion at index = " + index);
-    }
+    private void evalPrintItem(String line) {
+        try {
+            if (line.length() == 1) {
+                char c = line.charAt(0);
+                int index = 0;
+                System.out.println("Printing minion at index = " + index);
+            }
+        } catch(NumberFormatException | IndexOutOfBoundsException e) {
+            // Do nothing
+        }
 
-    private int getCardIndex(String line) {
-        try {  
-            return Integer.parseInt(line);  
-        } catch(NumberFormatException e) {  
-            return -1;  
-        }  
-    }
 
-    private int getMinionIndex(String line) {
-        return 0;
-    }
+    }        
 
     private static boolean isNumeric(String line) {  
         try {  
