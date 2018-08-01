@@ -73,6 +73,10 @@ public abstract class Player {
         return hand;
     }
 
+    public HeroCharacter getHero() {
+        return hero;
+    }
+
     public MinionBoard getBoard() {
         return board;
     }

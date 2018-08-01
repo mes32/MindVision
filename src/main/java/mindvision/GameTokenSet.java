@@ -19,10 +19,25 @@ public class GameTokenSet {
         this.p2 = p2;
     }
 
-    public GameToken get(char index) throws IndexOutOfBoundsException {
-        throw new IndexOutOfBoundsException();
+    public GameToken get(char c) throws IndexOutOfBoundsException {
+        MinionBoard minions1 = p1.getBoard();
+        MinionBoard minions2 = p2.getBoard();
 
-        // TODO: Implement this function;
+        int index = (new String(ALPHABET)).indexOf(c);
+        int index1 = index - 1;
+        int index2 = index - 1 - minions1.size();
+
+        if (index == 0) {
+            return p1.getHero();
+        } else if (index == minions1.size() + minions2.size() + 1) {
+            return p2.getHero();
+        } else if (index1 >= 0 && index1 < minions1.size()) {
+            return minions1.get(index1);
+        } else if (index2 >= 0 && index2 < minions2.size()) {
+            return minions2.get(index2);
+        } else {
+            throw new IndexOutOfBoundsException();
+        }        
     }
 
     public String toString() {

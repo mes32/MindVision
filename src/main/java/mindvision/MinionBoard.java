@@ -20,6 +20,10 @@ public class MinionBoard {
         minions.push(minion);
     }
 
+    public SummonedMinion get(int index) {
+        return minions.get(index);
+    }
+
     public int size() {
         return minions.size();
     }
