@@ -11,11 +11,10 @@ import java.io.*;
 import java.util.*;
 
 public class CommandLineInterface {
-    private static final char[] ALPHABET = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-
     private Game game;
     private Player p1;
     private Player p2;
+    private GameTokenSet gameTokens;
 
     private Scanner scan = new Scanner(System.in);
 
@@ -23,6 +22,7 @@ public class CommandLineInterface {
         this.game = game;
         p1 = game.getPlayer1();
         p2 = game.getPlayer2();
+        gameTokens = new GameTokenSet(p1, p2);
     }
 
     public void start() {
@@ -35,7 +35,7 @@ public class CommandLineInterface {
                 if (isNumeric(line)) {
                     evalPrintCard(line);
                 } else {
-                    evalPrintItem(line);
+                    evalPrintToken(line);
                 }
             }
 
@@ -47,7 +47,7 @@ public class CommandLineInterface {
 
     private void printAll() {
         printPlayers();
-        printBoards();
+        printTokens();
         printHand();
     }
 
@@ -65,27 +65,8 @@ public class CommandLineInterface {
         System.out.println();
     }
 
-    private void printBoards() {
-        int board1 = p1.getBoard().size();
-        int board2 = p2.getBoard().size();
-
-        int index = 0;
-        System.out.println("                (" + ALPHABET[index++] + ")");
-
-        printSpaces(4 + 14 - 2*board1);
-        for (int i=0; i < board1; i++) {
-            System.out.print("(" + ALPHABET[index++] + ") ");
-        }
-        System.out.println();
-
-        printSpaces(4 + 14 - 2*board2);
-        for (int i=0; i < board2; i++) {
-            System.out.print("(" + ALPHABET[index++] + ") ");
-        }
-        System.out.println();
-
-        System.out.println("                (" + ALPHABET[index++] + ")");
-
+    private void printTokens() {
+        System.out.println(gameTokens.toString());
         System.out.println();
     }
 
@@ -115,18 +96,16 @@ public class CommandLineInterface {
         }
     }
 
-    private void evalPrintItem(String line) {
+    private void evalPrintToken(String line) {
         try {
             if (line.length() == 1) {
-                char c = line.charAt(0);
-                int index = 0;
-                System.out.println("Printing minion at index = " + index);
+                char index = line.charAt(0);
+                GameToken token = gameTokens.get(index);
+                token.print();
             }
-        } catch(NumberFormatException | IndexOutOfBoundsException e) {
+        } catch(IndexOutOfBoundsException e) {
             // Do nothing
         }
-
-
     }        
 
     private static boolean isNumeric(String line) {  
@@ -136,11 +115,5 @@ public class CommandLineInterface {
             return false;  
         }  
         return true;
-    }
-
-    private static void printSpaces(int n) {
-        char[] spaces = new char[n];
-        Arrays.fill(spaces, ' ');
-        System.out.print(new String(spaces));
     }
 }
