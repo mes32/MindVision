@@ -46,4 +46,8 @@ public class HealthPoints {
             return false;
         }
     }
+
+    public String toString() {
+        return currentPoints + "/" + totalPoints;
+    }
 }

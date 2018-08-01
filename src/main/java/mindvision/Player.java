@@ -16,7 +16,7 @@ public abstract class Player {
 
     private Deck deck = new Deck();
     private Hand hand = new Hand(MAXIMUM_HAND_SIZE);
-    private Hero hero = new Hero();
+    private HeroCharacter hero = new HeroCharacter();
     private MinionBoard board = new MinionBoard(MAXIMUM_BOARD_SIZE);
 
     public Player() {
@@ -60,6 +60,7 @@ public abstract class Player {
         }
     }
 
+    // TODO: This function is now inside the class Hero and should be removed here
     public HealthPoints getHP() {
         return hero.getHP();
     }

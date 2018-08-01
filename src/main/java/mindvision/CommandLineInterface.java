@@ -52,18 +52,16 @@ public class CommandLineInterface {
     }
 
     private void printPlayers() {
-        int currentHP1 = p1.getHP().getCurrent();
-        int totalHP1 = p1.getHP().getTotal();
+        HealthPoints hp1 = p1.getHP();
         int deck1 = p1.getDeck().size();
         int hand1 = p1.getHand().size();
 
-        int currentHP2 = p2.getHP().getCurrent();
-        int totalHP2 = p2.getHP().getTotal();
+        HealthPoints hp2 = p2.getHP();
         int deck2 = p2.getDeck().size();
         int hand2 = p2.getHand().size();
 
-        System.out.printf("P1    HP: %d/%d    deck: %d    hand: %d%n", currentHP1, totalHP1, deck1, hand1);
-        System.out.printf("P2    HP: %d/%d    deck: %d    hand: %d%n", currentHP2, totalHP2, deck2, hand2);
+        System.out.printf("P1    HP: %s    deck: %d    hand: %d%n", hp1, deck1, hand1);
+        System.out.printf("P2    HP: %s    deck: %d    hand: %d%n", hp2, deck2, hand2);
         System.out.println();
     }
 
