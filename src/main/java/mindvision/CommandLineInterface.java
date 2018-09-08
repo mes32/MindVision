@@ -22,6 +22,7 @@ public class CommandLineInterface {
         this.game = game;
         p1 = game.getPlayer1();
         p2 = game.getPlayer2();
+        // TODO: Move GameTokens inside Game
         gameTokens = new GameTokenSet(p1, p2);
     }
 
@@ -30,19 +31,44 @@ public class CommandLineInterface {
         System.out.print(" > ");
         String line = scan.nextLine();
 
-        while (!line.equals(".")) {
-            if (line.length() == 1) {
-                if (isNumeric(line)) {
-                    evalPrintCard(line);
-                } else {
-                    evalPrintToken(line);
+        while (true) {
+            char[] units = getCommandUnits(line);
+            if (units.length == 1 && units[0] == '.') {
+                break;
+            }
+
+            try {
+                if (units.length == 1) {
+                    char u0 = units[0];
+                    if (isNumeric(u0)) {
+                        evalPrintCard(u0);
+                    } else {
+                        evalPrintToken(u0);
+                    }
+                } else if (units.length == 2) {
+                    char u0 = units[0];
+                    char u1 = units[1];
+                    if (isNumeric(u0)) {
+                        evalPlayCard(u0, u1);
+                    }
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
             printAll();
             System.out.print(" > ");
             line = scan.nextLine();
         }
+    }
+
+    private char[] getCommandUnits(String line) {
+        String[] strings = line.split("\\s");
+        char[] units = new char[strings.length];
+        for (int i = 0; i < strings.length; i++) {
+            units[i] = strings[i].charAt(0);
+        }
+        return units;
     }
 
     private void printAll() {
@@ -83,37 +109,44 @@ public class CommandLineInterface {
         System.out.println();
     }
 
-    private void evalPrintCard(String line) {
-        try {
-            if (line.length() == 1) {
-                int index = Integer.parseInt(line);
-                Hand hand = p2.getHand();
-                Card card = hand.get(index);
-                card.print();
-            }
-        } catch(NumberFormatException | IndexOutOfBoundsException e) {
-            // Do nothing
-        }
+    private void evalPrintCard(char c) throws NumberFormatException, IndexOutOfBoundsException {
+        int index = Character.getNumericValue(c);
+        Hand hand = p2.getHand();
+        Card card = hand.get(index);
+        card.print();
     }
 
-    private void evalPrintToken(String line) {
-        try {
-            if (line.length() == 1) {
-                char index = line.charAt(0);
-                GameToken token = gameTokens.get(index);
-                token.print();
-            }
-        } catch(IndexOutOfBoundsException e) {
-            // Do nothing
-        }
-    }        
+    private void evalPrintToken(char c) throws IndexOutOfBoundsException {
+        String line = "" + c;
+        char index = line.charAt(0);
+        GameToken token = gameTokens.get(index);
+        token.print();
+    }
 
-    private static boolean isNumeric(String line) {  
-        try {  
-            int number = Integer.parseInt(line);  
+    private void evalPlayCard(char u0, char u1) throws IndexOutOfBoundsException {
+        int index = Character.getNumericValue(u0);
+        char target = u1;
+        Hand hand = p2.getHand();
+
+        Card card = hand.get(index);
+        GameToken token = gameTokens.get(target);
+
+        // TODO: Replace this print with instructing the game object to make the play
+        card.print();
+        token.print();
+    }
+
+    private static boolean isNumeric(String line) {
+        // TODO: Remove this version of the function
+        try {
+            int number = Integer.parseInt(line);
         } catch(NumberFormatException e) {  
             return false;  
         }  
         return true;
+    }
+
+    private static boolean isNumeric(char c) {
+        return Character.isDigit(c);
     }
 }
