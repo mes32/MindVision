@@ -12,6 +12,7 @@ import java.util.Random;
 public abstract class Player {
 
     private static final int MAXIMUM_HAND_SIZE = 10;
+    private static final int STARTING_HAND_SIZE = 3;
     private static final int MAXIMUM_BOARD_SIZE = 7;
 
     private Deck deck = new Deck();
@@ -45,7 +46,7 @@ public abstract class Player {
         }
         deck.shuffle();
 
-        for (int i=0; i < 3; i++) {
+        for (int i=0; i < STARTING_HAND_SIZE; i++) {
             Card card = deck.draw();
             hand.insert(card);
         }

@@ -22,8 +22,7 @@ public class CommandLineInterface {
         this.game = game;
         p1 = game.getPlayer1();
         p2 = game.getPlayer2();
-        // TODO: Move GameTokens inside Game
-        gameTokens = new GameTokenSet(p1, p2);
+        gameTokens = game.getGameTokens();
     }
 
     public void start() {
@@ -134,16 +133,8 @@ public class CommandLineInterface {
         // TODO: Replace this print with instructing the game object to make the play
         card.print();
         token.print();
-    }
 
-    private static boolean isNumeric(String line) {
-        // TODO: Remove this version of the function
-        try {
-            int number = Integer.parseInt(line);
-        } catch(NumberFormatException e) {  
-            return false;  
-        }  
-        return true;
+        game.play(p2, card, token);
     }
 
     private static boolean isNumeric(char c) {
